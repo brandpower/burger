@@ -1,0 +1,52 @@
+{{!--It's important to have fun headings. --}}
+<h1>"Hey Google, what's this song? We dont want none unless you got buns hun? I'll tell you for free. The legendary
+    Baby Got Back by Sir Mix-a-Lot."</h1>
+
+{{!-- add in the image --}}
+<img src="/assets/img/cute_burger.jpeg" width="400px" id="cute_burger">
+
+{{!-- rest of the page setting up the all the eat me, devoured and add function placement --}}
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col s6">
+                <h2>Eat me</h2>
+
+                {{#each burgers}}
+                {{#unless this.devoured}}
+                <div>
+                    <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
+                        <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
+                    </form>
+                </div>
+                {{/unless}}
+                {{/each}}
+            </div>
+
+            <div class="col s6">
+                <h2>Devoured ;)</h2>
+
+                {{#each burgers}}
+                {{#if this.devoured}}
+                <div class='burgerEaten'>
+                    <div>
+                        {{this.burger_name}}
+                    </div>
+                </div>
+                {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</main>
+
+<h2>Add A Burger </h2>
+
+<div class="row">
+    <div class="col s12">
+        <form action="/burgers" method="POST">
+            <input type="text" id="name" name="burger_name" placeholder="Feed Me Seymour">
+            <button type="submit" class="addBurgerButton">Add The Burger</button>
+        </form>
+    </div>
+</div>
